@@ -7,4 +7,16 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    :css
+      body {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 70px;
+      }
+    = nav_bar :fixed => :top, :brand => 'Главная страница', :brand_link => root_path
+    %div.container-fluid
+      %div.row
+        %div.col-md-1
+        %div.col-md-8
+          = yield :main_body
+        %div.col-md-3
