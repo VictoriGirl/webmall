@@ -1,0 +1,11 @@
+= content_for :main_body do
+  %h3 Создайте свой интернет-магазин
+  = simple_form_for (@resource), method: :put do |f|
+    %p
+      = f.input :name, label: 'Ваш проект'
+    %p
+      = f.input :adress, label: 'Местоположение'
+    %p
+      = f.input :phone, label: 'Номер телефона', placeholder: "81234567890"
+    %p
+      = f.button :submit, 'Сохранить', class: "btn btn-primary"
