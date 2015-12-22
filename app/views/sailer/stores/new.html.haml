@@ -1,0 +1,17 @@
+= content_for :left_block do
+  = link_to "<i class='fa fa-arrow-left'></i> Назад в офис".html_safe, profile_path(@user.profile), class: "btn btn-default btn-block"
+= content_for :main_body do
+  %h3 Создайте интернет-магазин
+  = simple_form_for (@resource) do |f|
+    %p
+      = f.input :name, label: 'Название'
+    %p
+      = f.input :description, label: 'Описание'
+    %p
+      = f.input :cathegory, label: 'Категория магазина', collection: ['Товары', 'Услуги'], selected: 'Товары'
+    %p
+      = f.input :speciality, label: 'Специализация', collection: ['Техника', 'Мебель', 'Досуг'], selected: 'Техника'
+    %p
+      = f.input :active, label: 'Готов к работе'
+    %p
+      = f.button :submit, 'Сохранить', class: "btn btn-primary"

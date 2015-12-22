@@ -7,4 +7,23 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    %nav.navbar.navbar-default{:fixed => :top, :role => :navigation}
+      %div.navbar-header
+        %a.navbar-brand{:href => root_path} ВебМолл
+      %ul.nav.navbar-nav.pull-left
+      %ul.nav.navbar-nav.pull-right
+        - if user_signed_in?
+          - if @user.profile.present?
+            = menu_item 'Офис', profile_path(@user.profile)
+          = menu_item 'Выход', destroy_user_session_path, method: :delete
+        - else
+          = menu_item 'Войти', new_user_session_path, method: :get
+          = menu_item 'Регистрация', new_user_registration_path, method: :get
+    %div.container-fluid
+      %div.row
+        %div.col-md-2
+          = yield :left_block
+        %div.col-md-7
+          = yield :main_body
+        %div.col-md-3
+          = yield :right_block

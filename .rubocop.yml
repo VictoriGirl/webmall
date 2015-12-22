@@ -44,8 +44,6 @@ Style/ClassAndModuleChildren:
 # Cop supports --auto-correct.
 Style/CommentIndentation:
   Exclude:
-    - 'app/controllers/User/registrations_controller.rb'
-    - 'app/controllers/User/sessions_controller.rb'
 
 # Offense count: 5
 # Configuration parameters: Exclude.
@@ -53,9 +51,7 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'app/controllers/application_controller.rb'
     - 'app/helpers/application_helper.rb'
-    - 'app/models/user.rb'
     - 'config/application.rb'
     - 'db/migrate/20151222125722_devise_create_users.rb'
 
