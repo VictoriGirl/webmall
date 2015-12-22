@@ -15,6 +15,8 @@
         - if user_signed_in?
           - if @user.profile.present?
             = menu_item 'Офис', profile_path(@user.profile)
+          - else
+            = menu_item 'Начать проект', new_profile_path
           = menu_item 'Выход', destroy_user_session_path, method: :delete
         - else
           = menu_item 'Войти', new_user_session_path, method: :get
