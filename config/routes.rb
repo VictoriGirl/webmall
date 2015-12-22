@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   scope module: 'sailer' do
     resources :profiles, except: [:destroy]
+    resources :stores
   end
 end

@@ -1,15 +1,15 @@
 module Sailer
-  # ProfilesController
-  class ProfilesController < ApplicationController
+  # StoresController
+  class StoresController < ApplicationController
     before_action :authenticate_user!, :load_user
     before_action :load_resource, only: [:show, :update, :destroy, :edit]
 
     def new
-      @resource = Profile.new
+      @resource = Store.new
     end
 
     def create
-      @resource = Profile.new(set_params.merge(user_id: @user.id))
+      @resource = Store.new(set_params.merge(profile_id: @user.profile.id))
       @resource.save ? (redirect_to @resource) : (render :new)
     end
 
@@ -23,6 +23,11 @@ module Sailer
       @resource.update(set_params) ? (redirect_to @resource) : (render :edit)
     end
 
+    def destroy
+      @resource.delete
+      redirect_to profile_path(@user.profile)
+    end
+
     private
 
     def load_user
@@ -30,11 +35,11 @@ module Sailer
     end
 
     def load_resource
-      @resource = Profile.find(params[:id])
+      @resource = Store.find(params[:id])
     end
 
     def set_params
-      params.require(:profile).permit(:name, :adress, :phone)
+      params.require(:store).permit(:name, :cathegory, :speciality, :active, :buying_count, :description)
     end
   end
 end

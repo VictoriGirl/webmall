@@ -1,3 +1,33 @@
+= content_for :left_block do
+  = link_to 'Изменить', edit_profile_path(@resource), class: "btn btn-default btn-block"
+  %br
+  = link_to 'Создать магазин', new_store_path, class: "btn btn-default btn-block"
+
 = content_for :main_body do
-  %h3 Ваш проект #{@resource.name}
-  = link_to 'Изменить', edit_profile_path(@resource), class: "btn btn-default"
+  %h3 #{@resource.name}
+  %table.table
+    %tr
+      %td
+        = "Местоположение: #{@resource.adress}"
+    %tr
+      %td
+        = "Email: #{@user.email}"
+    %tr
+      %td
+        = "Номер телефона: #{@resource.phone}"
+  %h3 Ваши магазины:
+  %table.table
+    %th Название
+    %th Описание
+    %th Действия
+    - @resource.stores.each do |s|
+      %tr
+        %td
+          -if s.active
+            %span.fa.fa-check
+          -else
+            %span.fa.fa-times
+          = "#{s.name}"
+        %td #{s.description}
+        %td
+          = link_to 'Подробнее', store_path(s), class: "btn btn-default  btn-xs"

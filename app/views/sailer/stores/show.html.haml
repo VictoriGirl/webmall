@@ -1,0 +1,23 @@
+= content_for :left_block do
+  = link_to "<i class='fa fa-arrow-left'></i> Назад в офис".html_safe, profile_path(@user.profile), class: "btn btn-default btn-block"
+  %br
+  = link_to 'Изменить', edit_store_path(@resource), class: "btn btn-default btn-block"
+
+= content_for :main_body do
+  %h3 #{@resource.name}
+  %table.table
+    %tr
+      %td
+        = "Описание: #{@resource.description}"
+    %tr
+      %td
+        = "Категория магазина: #{@resource.cathegory}"
+    %tr
+      %td
+        = "Специализация: #{@resource.speciality}"
+    %tr
+      %td
+        - if @resource.active
+          = "Готов к работе"
+        - else
+          = "Временно не работает"
