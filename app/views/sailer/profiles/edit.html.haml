@@ -1,5 +1,7 @@
+= content_for :left_block do
+  = link_to "<i class='fa fa-arrow-left'></i> Назад в офис".html_safe, profile_path(@user.profile), class: "btn btn-default btn-block"
 = content_for :main_body do
-  %h3 Создайте свой интернет-магазин
+  %h3 Измените информацию о своем проекте
   = simple_form_for (@resource), method: :put do |f|
     %p
       = f.input :name, label: 'Ваш проект'
