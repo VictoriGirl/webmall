@@ -15,19 +15,18 @@
     %tr
       %td
         = "Номер телефона: #{@resource.phone}"
-  %h3 Ваши магазины:
-  %table.table
-    %th Название
-    %th Описание
-    %th Действия
-    - @resource.stores.each do |s|
-      %tr
-        %td
-          -if s.active
-            %span.fa.fa-check
-          -else
-            %span.fa.fa-times
-          = "#{s.name}"
-        %td #{s.description}
-        %td
-          = link_to 'Подробнее', store_path(s), class: "btn btn-default  btn-xs"
+  - if @resource.stores.present?
+    %h4 Ваши магазины:
+    %table.table
+      %th Название
+      %th Описание
+      - @resource.stores.each do |s|
+        %tr
+          %td
+            = link_to store_path(s) do
+              -if s.active
+                %span.fa.fa-check
+              -else
+                %span.fa.fa-times
+              = "#{s.name}"
+          %td #{s.description}
